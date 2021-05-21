@@ -1,15 +1,23 @@
 package ru.job4j.forum.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "posts")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Column(name = "description")
     private String desc;
+    @Temporal(TemporalType.TIMESTAMP)
     private Calendar created;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post", fetch = FetchType.LAZY)
     private final List<Comment> comments = new ArrayList<>();
 
     public static Post of(String name, Calendar created, String desc) {

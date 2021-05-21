@@ -15,12 +15,6 @@ public class PostService {
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
-        this.postRepository.save(
-                Post.of("Куплю авто", new GregorianCalendar(), "пробег не больше 50000")
-        );
-        this.postRepository.save(
-                Post.of("Продам смартфон", new GregorianCalendar(), "не бит, в хорошем состоянии")
-        );
     }
 
     public void save(Post post) {
@@ -33,6 +27,7 @@ public class PostService {
 
     public List<Post> findAll() {
         List<Post> posts = new ArrayList<>(postRepository.findAll());
+        posts.addAll(postRepository.findAll());
         return posts;
     }
 

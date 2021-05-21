@@ -17,8 +17,8 @@ public class CommentService {
     }
 
     public void save(Comment comment) {
-        commentRepository.save(comment);
         Post post = postRepository.findById(comment.getPost().getId()).get();
         post.addComment(comment);
+        commentRepository.save(comment);
     }
 }
