@@ -2,7 +2,7 @@ package ru.job4j.forum.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
-import ru.job4j.forum.repository.PostRepository;
+import ru.job4j.forum.store.PostRepository;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -26,8 +26,8 @@ public class PostService {
     }
 
     public List<Post> findAll() {
-        List<Post> posts = new ArrayList<>(postRepository.findAll());
-        posts.addAll(postRepository.findAll());
+        List<Post> posts = new ArrayList<>();
+        postRepository.findAll().forEach(posts::add);
         return posts;
     }
 
