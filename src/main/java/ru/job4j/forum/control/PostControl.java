@@ -56,16 +56,16 @@ public class PostControl {
 
     @GetMapping("/load")
     public String updateLoad(@RequestParam("id") int id, Model model) {
-        model.addAttribute("post", postService.findById(id).get());
+        model.addAttribute("post", postService.findById(id));
         return "/edit";
     }
 
     @GetMapping("/post")
     public String show(@RequestParam("id") int id, Model model) {
-        model.addAttribute("post", postService.findById(id).get());
+        model.addAttribute("post", postService.findById(id));
         model.addAttribute("user",
                 userService.findByUsername((SecurityContextHolder.getContext().getAuthentication()
-                        .getName())).get());
+                        .getName())));
         model.addAttribute("comments", commentService.findCommentsByPostId(id));
         return "/post";
     }

@@ -20,6 +20,16 @@ public class CommentControlTest {
     @Autowired
     private MockMvc mockMvc;
 
+
+    @Test
+    @WithMockUser
+    public void shouldReturnCreatePage() throws Exception {
+        this.mockMvc.perform(get("/comment").param("id", "1"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("comment/create"));
+    }
+
     @Test
     @WithMockUser(username = "admin")
     public void shouldReturnMainPage() throws Exception {
