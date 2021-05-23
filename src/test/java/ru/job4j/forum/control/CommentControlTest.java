@@ -20,7 +20,6 @@ public class CommentControlTest {
     @Autowired
     private MockMvc mockMvc;
 
-
     @Test
     @WithMockUser
     public void shouldReturnCreatePage() throws Exception {
