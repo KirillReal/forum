@@ -2,7 +2,7 @@ package ru.job4j.forum.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
-import ru.job4j.forum.repository.PostRepository;
+import ru.job4j.forum.store.PostRepository;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -15,12 +15,6 @@ public class PostService {
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
-        this.postRepository.save(
-                Post.of("Куплю авто", new GregorianCalendar(), "пробег не больше 50000")
-        );
-        this.postRepository.save(
-                Post.of("Продам смартфон", new GregorianCalendar(), "не бит, в хорошем состоянии")
-        );
     }
 
     public void save(Post post) {
@@ -32,7 +26,8 @@ public class PostService {
     }
 
     public List<Post> findAll() {
-        List<Post> posts = new ArrayList<>(postRepository.findAll());
+        List<Post> posts = new ArrayList<>();
+        postRepository.findAll().forEach(posts::add);
         return posts;
     }
 

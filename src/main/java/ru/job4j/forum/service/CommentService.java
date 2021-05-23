@@ -3,8 +3,8 @@ package ru.job4j.forum.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Comment;
 import ru.job4j.forum.model.Post;
-import ru.job4j.forum.repository.CommentRepository;
-import ru.job4j.forum.repository.PostRepository;
+import ru.job4j.forum.store.CommentRepository;
+import ru.job4j.forum.store.PostRepository;
 
 @Service
 public class CommentService {
@@ -18,7 +18,5 @@ public class CommentService {
 
     public void save(Comment comment) {
         commentRepository.save(comment);
-        Post post = postRepository.findById(comment.getPost().getId()).get();
-        post.addComment(comment);
     }
 }

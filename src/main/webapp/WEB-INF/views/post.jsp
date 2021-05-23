@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: kiril
+  Date: 22.05.2021
+  Time: 19:03
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
@@ -23,35 +30,26 @@
 <body>
 <div class="container">
     <form style="margin-top: 15px">
-        <h3>Форум job4j
+        <h3>
+            <a style="color: black" href="<c:url value='/'/>"> Форум job4j</a>
             <a class="header" style="font-size: medium">Текущий пользователь: ${user.name}</a>
         </h3>
-        <a class="header" href="http://localhost:8080/login" style="margin-top: -15px">Сменить пользователя</a>
+        <a class="header" href="<c:url value='/login'/>" style="margin-top: -15px">Сменить пользователя</a>
     </form>
-    <form action="<c:url value='/create'/>">
-        <button class="btn btn-outline-secondary">Создать тему</button>
+    <form>
+        <a class="btn btn-outline-secondary" href="<c:url value='/load?id=${post.id}'/>">Редактировать тему</a>
     </form>
     <form style="margin-top: 10px">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th scope="col">Тема</th>
-                <th scope="col" style="width: 100px;">Автор</th>
-                <th scope="col" style="width: 250px">Дата изменения</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${posts}" var="post">
-                <tr>
-                    <td>
-                        <a href="<c:url value='/post?id=${post.id}'/>"><c:out value="${post.name}"/></a>
-                    </td>
-                    <td><c:out value="${post.user.username}"/></td>
-                    <td><c:out value="${post.created}"/></td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+        <div class="card">
+            <div class="card-header">
+                <h5 style="float: left">Тема: <c:out value="${post.name}"/> (Автор: <c:out value="${post.user.username}"/>)</h5>
+                <h5 style="float: right">Дата изменения: <c:out value="${post.created}"/></h5>
+            </div>
+            <div class="card-body">
+                <h4>Описание:</h4>
+                <c:out value="${post.desc}"/>
+            </div>
+        </div>
     </form>
 </div>
 
