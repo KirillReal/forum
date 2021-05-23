@@ -13,8 +13,6 @@ CREATE TABLE users (
 
 INSERT INTO authorities (authority) VALUES ('ROLE_USER');
 
-DELETE FROM comment WHERE 1=1;
-DELETE FROM posts WHERE 1=1;
 ALTER TABLE posts
     ADD COLUMN user_id INT NOT NULL REFERENCES users(id);
 ALTER TABLE comment
