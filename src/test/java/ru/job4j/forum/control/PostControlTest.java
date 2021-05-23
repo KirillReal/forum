@@ -25,16 +25,7 @@ public class PostControlTest {
         this.mockMvc.perform(get("/create"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(view().name("create"));
-    }
-
-    @Test
-    @WithMockUser
-    public void shouldReturnUpdatePage() throws Exception {
-        this.mockMvc.perform(get("/load").param("id", "1"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(view().name("/edit"));
+                .andExpect(view().name("/create"));
     }
 
     @Test
@@ -44,15 +35,6 @@ public class PostControlTest {
                 .andDo(print())
                 .andExpect(status().is(302))
                 .andExpect(view().name("redirect:/index"));
-    }
-
-    @Test
-    @WithMockUser(username = "admin")
-    public void shouldLoadPost() throws Exception {
-        this.mockMvc.perform(get("/post").param("id", "1"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(view().name("/post"));
     }
 
 }
