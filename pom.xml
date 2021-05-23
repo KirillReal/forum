@@ -120,16 +120,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <!-- Fixed a bug related to the surefire plugin
-               that will be solved in the next version of the plugin (after 2.22.1)
-                                         and we can then remove this patch   -->
-          <useSystemClassLoader>false</useSystemClassLoader>
-        </configuration>
-      </plugin>
+
 
     </plugins>
   </build>
