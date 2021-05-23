@@ -1,8 +1,7 @@
 package ru.job4j.forum.model;
 
 import javax.persistence.*;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -14,7 +13,7 @@ public class Comment {
     @Column(name = "description")
     private String desc;
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar created = new GregorianCalendar();
+    private Date created;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
@@ -46,11 +45,11 @@ public class Comment {
         this.desc = desc;
     }
 
-    public Calendar getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(Calendar created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 

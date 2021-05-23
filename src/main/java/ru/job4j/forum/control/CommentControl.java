@@ -14,6 +14,7 @@ import ru.job4j.forum.service.CommentService;
 import ru.job4j.forum.service.PostService;
 import ru.job4j.forum.service.UserService;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -29,8 +30,9 @@ public class CommentControl {
         this.userService = userService;
     }
 
-    @PostMapping("/comment/save")
+    @PostMapping("/saveComment")
     public String save(@ModelAttribute Comment comment, @RequestParam("id") int id) {
+        comment.setCreated(new Date(System.currentTimeMillis()));
         comment.setUser(userService.findByUsername(SecurityContextHolder.getContext()
                 .getAuthentication().getName()).get());
         comment.setPost(postService.findById(id).get());
@@ -49,9 +51,6 @@ public class CommentControl {
         return "redirect:/post?id=" + postId;
     }
 
-    /**
-     * @param id поста, к которому принадлежит комментарий
-     * */
     @GetMapping("/comment")
     public String create(@RequestParam("id") int id, Model model) {
         model.addAttribute("post", postService.findById(id).get());

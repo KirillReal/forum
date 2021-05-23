@@ -59,6 +59,36 @@
                 <h4>Описание:</h4>
                 <c:out value="${post.desc}"/>
             </div>
+<div class="card-body">
+<h4>Описание:</h4>
+<c:out value="${post.desc}"/>
+<div style="margin-top: 25px">
+    <a class="btn btn-outline-primary" href="<c:url value='/comment?id=${post.id}'/>">Добавить
+        комментарий</a>
+</div>
+<c:forEach items="${comments}" var="comment">
+    <div class="card">
+    <div class="card-header">
+    <h6 style="float: left">
+    Комментарий от <c:out value="${comment.user.username}"/>'а
+    </h6>
+    <h6 style="float: right">
+    Дата создания: <c:out value="${comment.created}"/>
+    </h6>
+    </div>
+    <div class="card-body">
+    <h5>Содержание:</h5>
+    <c:out value="${comment.desc}"/>
+        <div style="margin-top: 25px">
+            <c:if test="${user.authority.authority == 'ROLE_ADMIN'}">
+                <a class="btn btn-outline-danger" href="<c:url value='/deleteComment?id=${comment.id}'/>">
+                    Удалить комментарий</a>
+            </c:if>
+        </div>
+    </div>
+</c:forEach>
+                </div>
+            </div>
         </div>
     </form>
 </div>
