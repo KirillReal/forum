@@ -53,7 +53,7 @@ public class CommentControl {
 
     @GetMapping("/comment")
     public String create(@RequestParam("id") int id, Model model) {
-        model.addAttribute("post", postService.findById(id));
+        model.addAttribute("post", postService.findById(id).get());
         return "comment/create";
     }
 }
