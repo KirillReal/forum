@@ -6,6 +6,9 @@ import ru.job4j.forum.model.Post;
 import ru.job4j.forum.store.CommentRepository;
 import ru.job4j.forum.store.PostRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CommentService {
     private final CommentRepository commentRepository;
@@ -18,5 +21,17 @@ public class CommentService {
 
     public void save(Comment comment) {
         commentRepository.save(comment);
+    }
+
+    public void delete(Comment comment) {
+        commentRepository.delete(comment);
+    }
+
+    public Optional<Comment> findById(int id) {
+        return commentRepository.findById(id);
+    }
+
+    public List<Comment> findCommentsByPostId(int postId) {
+        return commentRepository.findCommentsByPostId(postId);
     }
 }

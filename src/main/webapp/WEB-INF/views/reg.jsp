@@ -47,7 +47,7 @@
                 <form class="form" name='login' action="<c:url value='/reg'/>" method='POST'>
                     <div class="form-group">
                         <h6>Имя</h6>
-                        <input type='text' name='name' placeholder="Введите ваше имя">
+                        <input type='text' name='username' placeholder="Введите ваше имя">
                     </div>
                     <div class="form-group">
                         <h6>Почта</h6>
@@ -72,4 +72,3 @@
 </div>
 </body>
 </html>
-0 comments on commit df935ea

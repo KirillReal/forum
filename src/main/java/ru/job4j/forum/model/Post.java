@@ -1,10 +1,7 @@
 package ru.job4j.forum.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "posts")
@@ -16,7 +13,7 @@ public class Post {
     @Column(name = "description")
     private String desc;
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar created;
+    private Date created;
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post", fetch = FetchType.LAZY)
     private final List<Comment> comments = new ArrayList<>();
 
@@ -32,11 +29,12 @@ public class Post {
         this.user = user;
     }
 
-    public static Post of(String name, Calendar created, String desc) {
+    public static Post of(String name, User user, String desc) {
         Post post = new Post();
         post.name = name;
-        post.created = created;
+        post.created = new Date(System.currentTimeMillis());
         post.desc = desc;
+        post.user = user;
         return post;
     }
 
@@ -69,11 +67,11 @@ public class Post {
         this.desc = desc;
     }
 
-    public Calendar getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(Calendar created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 

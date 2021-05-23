@@ -1,12 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: kiril
-  Date: 20.05.2021
-  Time: 1:32
+  Date: 23.05.2021
+  Time: 3:07
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <!-- Bootstrap CSS -->
@@ -23,48 +23,30 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
 
-    <title>Вход</title>
-
-    <style>
-        .card {
-            margin: 0 auto;
-            width: 400px;
-            height: 375px
-        }
-        .form-group {
-            width: 300px;
-        }
-    </style>
+    <title>Добавить комментарий</title>
 </head>
 <body>
 <div class="container pt-3">
     <div class="row">
-        <div class="card">
+        <div class="card" style="margin: 0 auto">
             <div class="card-header">
-                <h4>Вход</h4>
+                <h4>Добавление комментария</h4>
             </div>
             <div class="card-body">
-                <form class="form" name='login' action="<c:url value='/login'/>" method='POST'>
+                <form class="form" action="<c:url value='/saveComment?id=${post.id}'/>" method='POST'>
                     <div class="form-group">
-                        <h6>Имя</h6>
-                        <input id="name" type='text' class="form-control" name='name'
-                               placeholder="Введите ваше Имя">
+                        <h6>
+                            <label for="content"> Комментарий: </label>
+                        </h6>
+                        <textarea class="input" rows="3" cols="50" id="content" name='content'
+                                  placeholder="Введите комментарий">
+                        </textarea>
                     </div>
-                    <div class="form-group">
-                        <h6>Пароль</h6>
-                        <input id="password" type='password' class="form-control" name='password'
-                               placeholder="Введите ваш пароль"/>
+                    <div class="card-form" style="margin-top: 10px">
+                        <button name="submit" type="submit" class="btn btn-primary floated">
+                            Добавить
+                        </button>
                     </div>
-                    <button name="submit" type="submit" class="btn btn-primary" style="margin-top: 15px">Вход</button>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                </form>
-                <form action="<c:url value='/reg'/>">
-                    <button class="btn btn-primary">Регистрация</button>
-                    <label id="wrongUser" style="color: red">
-                        <c:if test="${not empty error}">
-                            ${error}
-                        </c:if>
-                    </label>
                 </form>
             </div>
         </div>

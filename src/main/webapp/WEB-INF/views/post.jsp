@@ -25,6 +25,12 @@
             display: inline;
             float: right;
         }
+        .btn-outline-danger{
+            margin-left: 15px;
+        }
+        .card {
+            margin-top: 25px;
+        }
     </style>
 </head>
 <body>
@@ -32,17 +38,21 @@
     <form style="margin-top: 15px">
         <h3>
             <a style="color: black" href="<c:url value='/'/>"> Форум job4j</a>
-            <a class="header" style="font-size: medium">Текущий пользователь: ${user.name}</a>
+            <a class="header" style="font-size: medium">Текущий пользователь: ${user.username}</a>
         </h3>
-        <a class="header" href="<c:url value='/login'/>" style="margin-top: -15px">Сменить пользователя</a>
+        <a class="header" href="<c:url value='/logout'/>" style="margin-top: -15px">Сменить пользователя</a>
     </form>
     <form>
-        <a class="btn btn-outline-secondary" href="<c:url value='/load?id=${post.id}'/>">Редактировать тему</a>
+        <c:if test="${user.authority.authority == 'ROLE_ADMIN' || user == post.user}">
+            <a class="btn btn-outline-secondary" href="<c:url value='/load?id=${post.id}'/>">Редактировать тему</a>
+            <a class="btn btn-outline-danger" href="<c:url value='/delete?id=${post.id}'/>">Удалить тему</a>
+        </c:if>
     </form>
-    <form style="margin-top: 10px">
+    <form>
         <div class="card">
             <div class="card-header">
-                <h5 style="float: left">Тема: <c:out value="${post.name}"/> (Автор: <c:out value="${post.user.username}"/>)</h5>
+                <h5 style="float: left"> <h5 style="float: left">Тема: <c:out value="${post.name}"/> (Автор: <c:out
+                        value="${post.user.username}"/>)</h5></h5>
                 <h5 style="float: right">Дата изменения: <c:out value="${post.created}"/></h5>
             </div>
             <div class="card-body">

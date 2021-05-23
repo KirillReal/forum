@@ -24,9 +24,9 @@
 <div class="container">
     <form style="margin-top: 15px">
         <h3>Форум job4j
-            <a class="header" style="font-size: medium">Текущий пользователь: ${user.name}</a>
+            <a class="header" style="font-size: medium">Текущий пользователь: ${user.username}</a>
         </h3>
-        <a class="header" href="http://localhost:8080/login" style="margin-top: -15px">Сменить пользователя</a>
+        <a class="header" href="http://localhost:8080/logout" style="margin-top: -15px">Сменить пользователя</a>
     </form>
     <form action="<c:url value='/create'/>">
         <button class="btn btn-outline-secondary">Создать тему</button>
