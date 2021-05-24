@@ -17,4 +17,3 @@ ALTER TABLE posts
     ADD COLUMN user_id INT NOT NULL REFERENCES users(id);
 ALTER TABLE comment
     ADD COLUMN user_id INT NOT NULL REFERENCES users(id);
-
