@@ -1,21 +1,26 @@
 language: java
 jdk:
-  - openjdk15
+- openjdk15
 services:
-  - postgresql
+- postgresql
 before_install:
-  - psql -c 'create database forum;' -U postgres
+- psql -c 'create database forum;' -U postgres
 sudo: false
 install: true
 script: mvn clean package -DskipTests=true
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
 notifications:
   email:
     recipients:
-      - kiril5471710@gmail.com
+    - kiril5471710@gmail.com
     on_success: never
     on_failure: always
 env:
   global:
-    - CODECOV_TOKEN="07ab4bab-bac4-4eb9-b788-09f5ee010756"
+  - CODECOV_TOKEN="07ab4bab-bac4-4eb9-b788-09f5ee010756"
+deploy:
+  provider: heroku
+  api_key:
+    secure: T3WCNVRI2Ev6uuvNiXxYtlDJ9xE3Tl7cZvqRkLbXMVufewAaXz+fEydYpQMpPDQHregmFFYYQbBUVzGP0CwDuaU5G+912AINBuVdrisrp6hK4RMqk61YmkjUQVAEaDJHacFSVQDkv7t/2Tert52EqHXsooB+tsvs6MGQic4jBDJW1WEL5yhbd1ePH63CPys5/U2FZg5APjovJ4dzxbd4e96FW50Jx3R54Lpho2dp96/vrr6fu/EvMHsMENlQs8P2x1nKbRgz5NQCd+jr3HaXsaUyV5uNc3HGOrFonwkHGepDGoBFey673TqzXaoMzSWjZ9BmYIwm80YgMWTAJToP3PL9DZX1ZJ9O+TZfa/+dHGOvHipetDmmxIlaqy2hHb+syfCUFZE9GcGA4ILLAE2bog+tzrLSa1iPKL2mbWqdJMB0F3xOXqsVTvehiMe6SO2aw1pBEwNlUIoyP9zK6pO8y3IXywAsL+8O0Na8/Io3fWU2R7OvjwvL6kVuPhlDLE+hNa8+xt+QUuv5eSCb4n+4MwFOxG3XuwGzbLwZSiTUKG6UYzsw0YogzD/6oa+S9Tti/ZGN6hAHW6MQqFqz4m+Lm31HGGYur1exhOd+gmrTAATyQYb+qSNeZqgJ0zJGGSYOlW0OqMmzTKnLATWXlVNuWdjL156Ps7ybEtzmQNMgQK8=
+app: tranquil-sands-97008
