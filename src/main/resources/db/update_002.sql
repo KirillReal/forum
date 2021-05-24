@@ -13,7 +13,8 @@ CREATE TABLE users (
 
 INSERT INTO authorities (authority) VALUES ('ROLE_USER');
 
-ALTER TABLE posts
+ALTER TABLE post
     ADD COLUMN user_id INT NOT NULL REFERENCES users(id);
+
 ALTER TABLE comment
     ADD COLUMN user_id INT NOT NULL REFERENCES users(id);
