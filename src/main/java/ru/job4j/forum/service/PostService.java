@@ -30,6 +30,10 @@ public class PostService {
         return posts;
     }
 
+    public Optional<Post> findPostByCommentId(int id) {
+        return postRepository.findPostByCommentId(id);
+    }
+
     public Optional<Post> findById(int id) {
         return postRepository.findById(id);
     }

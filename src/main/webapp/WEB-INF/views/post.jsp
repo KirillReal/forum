@@ -81,6 +81,24 @@
                 <a class="btn btn-outline-danger" href="<c:url value='/deleteComment?id=${comment.id}'/>">
                     Удалить комментарий</a>
             </c:if>
+            <c:forEach items="${comment.answers}" var="answer">
+                <div class="card">
+                    <div class="card-header">
+                        <a style="float: left">
+                            Ответ от <c:out value="${answer.author.username}"/>'а</a>
+                        <a style="float: right">
+                            Дата создания: <c:out value="${answer.created}"/></a>
+                    </div>
+                    <div class="card-body">
+                        <c:out value="${answer.content}"/>
+                        <c:if test="${user.authority.authority == 'ROLE_ADMIN'}">
+                            <a class="btn btn-outline-danger" style="float: right"
+                               href="<c:url value='/deleteAnswer?id=${answer.id}'/>">
+                                Удалить ответ</a>
+                        </c:if>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
     </div>
 </c:forEach>

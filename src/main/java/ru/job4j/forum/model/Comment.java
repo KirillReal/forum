@@ -2,6 +2,7 @@ package ru.job4j.forum.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,6 +25,21 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(cascade = CascadeType.MERGE)
+    private List<Answer> answers;
+
+    public void addAnswer(Answer answer) {
+        this.answers.add(answer);
+    }
+
+    public void deleteAnswer(Answer answer) {
+        this.answers.remove(answer);
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
 
     public int getId() {
         return id;
