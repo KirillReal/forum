@@ -5,7 +5,7 @@ create table answers(
                         user_id int references users(id)
 );
 
-create table comments_answers(
+create table comment_answers(
                                  comment_id int references comment(id),
                                  answers_id int references answers(id)
 );

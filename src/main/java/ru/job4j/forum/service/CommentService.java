@@ -3,9 +3,7 @@ package ru.job4j.forum.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Answer;
 import ru.job4j.forum.model.Comment;
-import ru.job4j.forum.model.Post;
 import ru.job4j.forum.store.CommentRepository;
-import ru.job4j.forum.store.PostRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,14 +11,12 @@ import java.util.Optional;
 @Service
 public class CommentService {
     private final CommentRepository commentRepository;
-    private final PostRepository postRepository;
 
-    public CommentService(CommentRepository commentRepository, PostRepository postRepository) {
+    public CommentService(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
-        this.postRepository = postRepository;
     }
 
-    public void save(Comment comment) {
+    public void add(Comment comment) {
         commentRepository.save(comment);
     }
 

@@ -36,7 +36,7 @@ public class CommentControl {
         comment.setUser(userService.findByUsername(SecurityContextHolder.getContext()
                 .getAuthentication().getName()).get());
         comment.setPost(postService.findById(id).get());
-        commentService.save(comment);
+        commentService.add(comment);
         return "redirect:/post?id=" + id;
     }
 

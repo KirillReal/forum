@@ -65,18 +65,20 @@
 </div>
 <c:forEach items="${comments}" var="comment">
     <div class="card">
-    <div class="card-header">
-    <h6 style="float: left">
-    Комментарий от <c:out value="${comment.user.username}"/>'а
-    </h6>
-    <h6 style="float: right">
-    Дата создания: <c:out value="${comment.created}"/>
-    </h6>
+         <div class="card-header">
+            <h6 style="float: left">
+                Комментарий от <c:out value="${comment.user.username}"/>'а
+            </h6>
+            <h6 style="float: right">
+                Дата создания: <c:out value="${comment.created}"/>
+            </h6>
     </div>
     <div class="card-body">
     <h5>Содержание:</h5>
     <c:out value="${comment.desc}"/>
         <div style="margin-top: 25px">
+            <a class="btn btn-outline-primary" href="<c:url value='/answer?id=${comment.id}'/>">
+                Ответить</a>
             <c:if test="${user.authority.authority == 'ROLE_ADMIN'}">
                 <a class="btn btn-outline-danger" href="<c:url value='/deleteComment?id=${comment.id}'/>">
                     Удалить комментарий</a>

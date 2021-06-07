@@ -38,7 +38,7 @@
                         <h6>
                             <label for="content"> Комментарий: </label>
                         </h6>
-                        <textarea class="input" rows="3" cols="50" id="content" name='content'
+                        <textarea class="input" rows="3" cols="50" id="content" name='desc'
                                   placeholder="Введите комментарий">
                         </textarea>
                     </div>

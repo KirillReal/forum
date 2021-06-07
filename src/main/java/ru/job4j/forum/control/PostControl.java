@@ -50,7 +50,7 @@ public class PostControl {
     }
 
     @GetMapping("/create")
-    public String create(Model model) {
+    public String create() {
         return "/create";
     }
 

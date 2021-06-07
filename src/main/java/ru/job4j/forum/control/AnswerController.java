@@ -47,13 +47,10 @@ public class AnswerController {
                 .getAuthentication().getName()).get());
         answers.add(answer);
         comment.get().addAnswer(answer);
-        comments.save(comment.get());
+        comments.add(comment.get());
         return "redirect:/post?id=" + postId;
     }
 
-    /**
-     * @param id ответа, который надо удалить
-     * */
     @GetMapping("/deleteAnswer")
     public String delete(@RequestParam("id") int id) {
         Optional<Answer> answer = answers.findById(id);
